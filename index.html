@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Rythm — AI Mental Health Predictor</title>
+<meta name="description" content="Decode your digital rhythm. Understand your mental patterns. An AI-powered mental health prediction experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="ambient-glow" aria-hidden="true"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow"><span class="eyebrow-mark">✦</span> AI-POWERED ANALYSIS</p>
+
+        <h1 class="brand">
+          <span class="brand-mental">Mental</span>
+          <span class="brand-rythm">Rythm</span>
+        </h1>
+
+        <p class="hero-label">AI Mental Health Predictor</p>
+
+        <p class="hero-desc">
+          Your everyday <span class="hl">digital habits</span> tell a story.
+          Mental Rythm uses <span class="hl">machine learning</span> to transform
+          those patterns into a <span class="hl">personalized prediction</span>.
+        </p>
+
+        <a href="#tune" class="cta-scroll">
+          <span>Begin analysis</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1V13M7 13L1.5 7.5M7 13L12.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <canvas id="neuralOrb" width="420" height="420"></canvas>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="tune" class="tune-section">
+      <div class="section-head reveal">
+        <p class="section-kicker">Tune Your Rhythm</p>
+        <h2>Tell us about your daily patterns.<br>The model will do the rest.</h2>
+      </div>
+
+      <form id="predict-form" class="glass-panel reveal" novalidate>
+
+        <!-- STAGE 01 -->
+        <fieldset class="stage">
+          <legend>
+            <span class="stage-num">01</span>
+            <span class="stage-title">Personal Profile</span>
+          </legend>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="10" max="100" step="1" inputmode="numeric" required aria-describedby="age-help age-error">
+              <p class="field-help" id="age-help">Between 10 and 100.</p>
+              <p class="field-error" id="age-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required aria-describedby="gender-error">
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <p class="field-error" id="gender-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" placeholder="e.g. India" autocomplete="country-name" required aria-describedby="country-error">
+              <p class="field-error" id="country-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="academic_level">Academic Level</label>
+              <select id="academic_level" name="academic_level" required aria-describedby="academic-error">
+                <option value="" disabled selected>Select level</option>
+                <option value="High School">High School</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+              </select>
+              <p class="field-error" id="academic-error" role="alert"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- STAGE 02 -->
+        <fieldset class="stage">
+          <legend>
+            <span class="stage-num">02</span>
+            <span class="stage-title">Digital Rhythm</span>
+          </legend>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="most_used_platform">Most Used Platform</label>
+              <select id="most_used_platform" name="most_used_platform" required aria-describedby="platform-error">
+                <option value="" disabled selected>Select platform</option>
+                <option value="Facebook">Facebook</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Snapchat">Snapchat</option>
+                <option value="Twitter">Twitter</option>
+                <option value="YouTube">YouTube</option>
+                <option value="TikTok">TikTok</option>
+                <option value="LINE">LINE</option>
+                <option value="KakaoTalk">KakaoTalk</option>
+                <option value="VKontakte">VKontakte</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="WeChat">WeChat</option>
+              </select>
+              <p class="field-error" id="platform-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="purpose_of_use">Purpose Of Use</label>
+              <select id="purpose_of_use" name="purpose_of_use" required aria-describedby="purpose-error">
+                <option value="" disabled selected>Select purpose</option>
+                <option value="Networking">Networking</option>
+                <option value="Education">Education</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News">News</option>
+              </select>
+              <p class="field-error" id="purpose-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="avg_daily_usage_hours">Average Daily Usage Hours</label>
+              <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.5" required aria-describedby="usage-help usage-error">
+              <p class="field-help" id="usage-help">How much time do you typically spend using digital platforms each day?</p>
+              <p class="field-error" id="usage-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="daily_unlocks">Daily Unlocks</label>
+              <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" max="1000" step="1" required aria-describedby="unlocks-help unlocks-error">
+              <p class="field-help" id="unlocks-help">Roughly how many times you unlock your phone per day.</p>
+              <p class="field-error" id="unlocks-error" role="alert"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- STAGE 03 -->
+        <fieldset class="stage">
+          <legend>
+            <span class="stage-num">03</span>
+            <span class="stage-title">Daily Balance</span>
+          </legend>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="study_hours">Study Hours</label>
+              <input type="number" id="study_hours" name="study_hours" min="0" max="24" step="0.5" required aria-describedby="study-error">
+              <p class="field-error" id="study-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="physical_activity_hours">Physical Activity Hours</label>
+              <input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="0.5" required aria-describedby="activity-error">
+              <p class="field-error" id="activity-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="sleep_hours_per_night">Sleep Hours Per Night</label>
+              <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.5" required aria-describedby="sleep-error">
+              <p class="field-error" id="sleep-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="stress_level">Stress Level</label>
+              <select id="stress_level" name="stress_level" required aria-describedby="stress-error">
+                <option value="" disabled selected>Select level</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Very High">Very High</option>
+              </select>
+              <p class="field-error" id="stress-error" role="alert"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-footer">
+          <button type="submit" class="cta-primary" id="submit-btn">
+            <span class="cta-content">
+              <span class="cta-label">Analyze My Rhythm</span>
+              <span class="cta-arrow" aria-hidden="true">→</span>
+            </span>
+            <span class="cta-loading" aria-hidden="true">
+              <span class="loading-dot"></span>
+              <span class="loading-dot"></span>
+              <span class="loading-dot"></span>
+              <span class="cta-loading-text">Analyzing your rhythm...</span>
+            </span>
+          </button>
+          <p class="sync-status" id="sync-status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div class="error-banner" id="error-banner" role="alert" hidden></div>
+
+      <div class="result-card" id="result-card" hidden aria-live="polite">
+        <div class="result-ring" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="ring-svg">
+            <circle class="ring-track" cx="100" cy="100" r="88"></circle>
+            <circle class="ring-arc" cx="100" cy="100" r="88"></circle>
+          </svg>
+        </div>
+        <p class="result-kicker">Your Rhythm, Decoded</p>
+        <p class="result-label">Predicted Mental Health Score</p>
+        <p class="result-score"><span id="score-value">0.00</span></p>
+        <p class="result-note">Generated from the lifestyle and digital patterns you provided.</p>
+        <p class="result-disclaimer">This is an AI-generated prediction, not a medical diagnosis or professional mental-health assessment.</p>
+        <button type="button" class="cta-secondary" id="reset-btn">Analyze Again</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Mental Rythm — an AI mental health prediction experiment. Not a substitute for professional care.</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
