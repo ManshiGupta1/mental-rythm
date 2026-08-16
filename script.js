@@ -3,7 +3,7 @@
    Vanilla JS only. Talks to an existing FastAPI backend.
    ========================================================= */
 
-const API_URL = "https://mental-rythm-1.onrender.com/predict";
+const API_URL = "https://mental-rythm.onrender.com/predict";
 
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
